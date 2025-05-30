@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Valentine Confession</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 1s ease;
+    }
+
+    body.love-mode {
+      background: radial-gradient(circle at top, #fbc2eb, #a18cd1);
+    }
+
+    #heart {
+      width: 150px;
+      height: 135px;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      animation: pulse 1.5s infinite;
+      cursor: pointer;
+    }
+
+    #heart::before,
+    #heart::after {
+      content: "";
+      width: 150px;
+      height: 135px;
+      background: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    #heart::before {
+      top: -75px;
+      left: 0;
+    }
+
+    #heart::after {
+      left: 75px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.1); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
+
+    #message {
+      display: none;
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      right: 10%;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      font-size: 1.2em;
+      line-height: 1.6em;
+      color: #333;
+      z-index: 10;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    #close {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff5e6c;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    #close:hover {
+      background: #ff3b4a;
+    }
+  </style>
+</head>
+<body>
+  <!-- Trái tim -->
+  <div id="heart" onclick="showMessage()"></div>
+
+  <!-- Thư tình -->
+  <div id="message">
+    <p>
+      Gửi con chó ngu 💌,<br><br>
+      Tôi đã giữ điều này trong lòng một thời gian,tôi thấy b ngu như chó<br> 
+    </p>
+    <button id="close" onclick="hideMessage()">Đóng</button>
+  </div>
+
+  <!-- Nhạc nền (ẩn) -->
+  <audio id="bgMusic" loop>
+    <source src="https://raw.githubusercontent.com/tunganh1092006/music/7d7d9984019baf9e25895854a95bd7c582990494/love-story.mp3
+" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ phát nhạc.
+  </audio>
+
+  <script>
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+      document.body.classList.add("love-mode");
+
+      // Phát nhạc nền
+      var audio = document.getElementById("bgMusic");
+      audio.play();
+    }
+
+    function hideMessage() {
+      document.getElementById("message").style.display = "none";
+
+      // Ngừng nhạc nếu muốn
+      // document.getElementById("bgMusic").pause();
+    }
+  </script>
+</body>
+</html>
